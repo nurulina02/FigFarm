@@ -1,6 +1,5 @@
 export function setupAuthUI() {
   
-
     const formContainer = document.querySelector(".form_container");
     const signupBtn = document.querySelector("#signup");
     const loginBtn = document.querySelector("#login");
@@ -11,12 +10,10 @@ export function setupAuthUI() {
         e.preventDefault();
         formContainer.classList.add("active");
       });
-    
       loginBtn.addEventListener("click", (e) => {
         e.preventDefault();
         formContainer.classList.remove("active");
       });
-    
       pwShowHide.forEach((icon) => {
         icon.addEventListener("click", () => {
         let getPwInput = icon.parentElement.querySelector("input");
@@ -30,5 +27,4 @@ export function setupAuthUI() {
         });
       });
     }
-  
 }
