@@ -1,23 +1,12 @@
 export function sidebar() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  // Navigation link functionality
-  navLinks.forEach(link => {
-    link.addEventListener('click', event => {
-      event.preventDefault();
-      const targetId = link.getAttribute('data-target');
-      sections.forEach(section => section.style.display = 'none');
-      const targetSection = document.getElementById(targetId);
-      if (targetSection) targetSection.style.display = 'block';
-    });
-  });
+
 
   const sidebar = document.querySelector(".sidebar");
   const sidebarToggler = document.querySelector(".sidebar-toggler");
   const menuToggler = document.querySelector(".menu-toggler");
   const collapsedSidebarHeight = "56px";
   const fullSidebarHeight = "calc(100vh - 32px)";
-  const sections = document.querySelectorAll('.content-section');
+const sections = document.querySelectorAll('.content-section');
   
     if (sidebar && sidebarToggler && menuToggler) {
       sidebarToggler.addEventListener("click", () => {

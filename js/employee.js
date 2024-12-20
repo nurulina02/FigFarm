@@ -239,17 +239,15 @@ export function edit_employee(){
         if (result.success) {
           alert("Employee updated successfully.");
           editModal.classList.add("hidden");
-          saveCurrentSection();
-          //location.reload();
+          
+          location.reload();
           
           
           
         } else {
           alert("Error: " + result.message);
         }
-        document.addEventListener("DOMContentLoaded", () => {
-          restoreSectionState();
-        });
+
       })
       .catch((error) => console.error("Error:", error));
 
