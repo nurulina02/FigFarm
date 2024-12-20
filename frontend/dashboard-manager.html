@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manager Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="../css/styles.css?v=1.0">
+
+</head>
+<body>
+  <div class="sidebar">
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="../img/logo.png" alt="Benefigs">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+      <button class="toggler menu-toggler">
+        <span class="material-symbols-rounded">menu</span>
+      </button>
+    </header>
+
+    <nav class ="sidebar-nav">
+      <!-- Primary top nav -->
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-target="dashboard-section">
+            <span class="nav-icon material-symbols-rounded">dashboard</span>
+            <span class="nav-label">Dashboard</span>
+          </a>
+          <span class="nav-tooltip">Dashboard</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link" data-target="attendance-section">
+            <span class="nav-icon material-symbols-rounded">inventory</span>
+            <span class="nav-label">Attendance</span>
+          </a>
+          <span class="nav-tooltip">Attendance</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">list</span>
+            <span class="nav-label">Work Assignment</span>
+          </a>
+          <span class="nav-tooltip">Work Assignment</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">sell</span>
+            <span class="nav-label">Sales</span>
+          </a>
+          <span class="nav-tooltip">Sales</span>
+        </li>
+        <li class="nav-item">
+          <a href="#employee-section" class="nav-link" data-target="employee-section">
+            <span class="nav-icon material-symbols-rounded">group</span>
+            <span class="nav-label">Employee</span>
+          </a>
+          <span class="nav-tooltip">Employee</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">book</span>
+            <span class="nav-label">Reports</span>
+          </a>
+          <span class="nav-tooltip">Reports</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">settings</span>
+            <span class="nav-label">Settings</span>
+          </a>
+          <span class="nav-tooltip">Settings</span>
+        </li>
+      </ul>
+      <!-- Secondary bottom nav -->
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Profile</span>
+          </a>
+          <span class="nav-tooltip">Profile</span>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Logout</span>
+          </a>
+          <span class="nav-tooltip">Logout</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+	<div class ="content">
+	<section id="dashboard-section" class="content-section">
+		<h1>Welcome to the Manager's Dashboard</h1>
+		<!-- Dashboard-specific content here -->
+	</section>
+
+	<section id="attendance-section" class="content-section" style="display: none;">
+		<h1>Attendance</h1>
+		<!-- Attendance-specific content here -->
+	</section>
+
+	<section id="employee-section" class="content-section" style="display: none;">
+		<header>
+			<button class="toggler add-toggler">
+				<span class="material-symbols-rounded">add</span>
+			</button>
+			<h1>Employee List</h1>
+		</header>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Status</th>
+					<th>Department</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody id="employee-list">
+				<!-- Employee data will be dynamically inserted here -->
+			</tbody>
+		</table>
+	</section>
+	</div>
+	<!-- Add Employee Modal -->
+<div id="addEmployeeModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2>New Employee</h2>
+    <form id="employeeForm">
+      <label for="staffID">Staff ID</label>
+      <input type="text" id="staffID" name="staffID" readonly />
+
+      <label for="staffName">Staff Name</label>
+      <input type="text" id="staffName" name="staffName" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+			<label for="department">Department</label><br>
+      <select id="department" name="department" required >
+				<option value="BANTING">BANTING</option>
+				<option value="HULU SELANGOR">HULU SELANGOR</option>
+				<option value="JANDA BAIK">JANDA BAIK</option>
+				<option value="PASIR PUTEH">PASIR PUTEH</option>
+				<option value="JERAM">JERAM</option>
+				<option value="RAUB">RAUB</option>
+			</select><br>
+
+      <button type="submit">Add Employee</button>
+    </form>
+  </div>
+</div>
+
+<div id="editEmployeeModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2>Edit Employee</h2>
+    <form id="editEmployeeForm">
+      <label for="editStaffID">Staff ID</label>
+      <input type="text" id="editStaffID" name="staffID" readonly />
+
+      <label for="editStaffName">Staff Name</label>
+      <input type="text" id="editStaffName" name="staffName" required />
+
+      <label for="editEmail">Email</label>
+      <input type="email" id="editEmail" name="email" required />
+
+      <label for="editDepartment">Department</label><br />
+      <select id="editDepartment" name="department" required>
+        <option value="BANTING">BANTING</option>
+        <option value="HULU SELANGOR">HULU SELANGOR</option>
+        <option value="JANDA BAIK">JANDA BAIK</option>
+        <option value="PASIR PUTEH">PASIR PUTEH</option>
+        <option value="JERAM">JERAM</option>
+        <option value="RAUB">RAUB</option>
+      </select><br />
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+</div>
+
+	
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>
