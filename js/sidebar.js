@@ -14,9 +14,11 @@ export function sidebar() {
         if (sidebar.classList.contains("collapsed")) {
           section.style.left = "100px";
           section.style.width = "calc(100% - 100px)";
+          section.style.top = "0px";
         } else {
-          section.style.left = "250px";
-          section.style.width = "calc(100% - 250px)";
+          section.style.left = "275px";
+          section.style.width = "calc(100% - 275px)";
+          section.style.top = "0px";
         }
       });
     });
@@ -35,8 +37,9 @@ export function sidebar() {
       if (window.innerWidth >= 700) {
         sidebar.style.height = fullSidebarHeight;
         contentSections.forEach(section => {
-          section.style.left = "250px";
-          section.style.width = "calc(100% - 250px)";
+          section.style.left = "275px";
+          section.style.width = "calc(100% - 275px)";
+          section.style.top = "0px";
         });
       } else {
         sidebar.classList.remove("collapsed");
@@ -45,6 +48,7 @@ export function sidebar() {
         contentSections.forEach(section => {
           section.style.left = "20px";
           section.style.width = "calc(100% - 20px)";
+          section.style.top = "55px";
         });
       }
     });

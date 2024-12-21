@@ -22,8 +22,8 @@ if ($conn->connect_error) {
 $stmt = $conn->prepare(
   "SELECT `staff_ID`, `staff_Name`, `email`, `status`, `department` 
   FROM `staff`
-  WHERE `department` = ?
-  ORDER BY `staff`.`status` ASC, `staff_ID`"
+  WHERE `department` = ?, `status` = 'active'
+  ORDER BY  `staff_ID` ASC"
 ); // Adjust column names based on your table
 $stmt->bind_param("s", $department);
 $stmt->execute();
@@ -32,22 +32,9 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
   // Create an array to store employees
   $employees = [];
-  $lastStaffID = null;
 
   while ($row = $result->fetch_assoc()) {
-    
-    $lastStaffID = $row['staff_ID'];
-    if($row['status']=='Active'){
-      $employees[] = $row;
-    }
-  }
-
-  if ($lastStaffID) {
-    $prefix = preg_replace('/\d/', '', $lastStaffID); // Extract prefix
-    $number = preg_replace('/\D/', '', $lastStaffID); // Extract number
-    $nextStaffID = $prefix . '0' . (intval($number) + 1);
-  } else {
-    $nextStaffID = "S1"; // Default if no employees exist
+    $employees[] = $row;
   }
 
   // Send JSON response

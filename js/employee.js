@@ -46,6 +46,7 @@ export function fetch_employee() {
           .then(response => response.json())
           .then(result => {
             if (result.success) {
+              location.reload();
               alert('Employee has been inactivated.');
             } else {
               alert('Failed to update status: ' + result.message);

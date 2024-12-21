@@ -153,7 +153,7 @@ body {
 
 /* ======= SIDEBAR STYLES ========== */
 .sidebar {
-    width: 230px;
+    width: 250px;
     position: fixed;
     margin: 16px;
     border-radius: 16px;
@@ -168,11 +168,11 @@ body {
 }
 
 .content-section {
+    left: 275px;
+    width: calc(100% - 275px);
     position: relative;
     padding-top: 20px;
     height: 100vh;
-    left: 250px;
-    width: calc(100% - 250px);
     background-image: none;
     background-size: cover;
     background-position: center;
@@ -544,38 +544,50 @@ table th {
 }
 
 .action-btn:hover {
-  color: #007bff; /* Blue on hover */
-  transform: scale(1.1); /* Slightly larger on hover */
+  color: #007bff; 
+  transform: scale(1.1); 
 }
 
-/* Specific styles for edit button */
+
 .edit-btn span {
-  color: green; /* Green icon for Edit */
+  color: green; 
 }
 
 .edit-btn:hover span {
-  color: #28a745; /* Brighter green on hover */
+  color: #28a745;
 }
 
-/* Specific styles for inactivate button */
 .inactivate-btn span {
-  color: red; /* Red icon for Inactivate */
+  color: red;
 }
 
 .inactivate-btn:hover span {
-  color: #dc3545; /* Brighter red on hover */
+  color: #dc3545;
 }
 
-/* Center content in the Action column */
 .action-cell {
-  text-align: center; /* Horizontally center */
-  vertical-align: middle; /* Vertically center */
+  text-align: center;
+  vertical-align: middle;
 }
 
-/* Use flexbox for perfect centering */
 .action-cell {
   display: flex;
-  justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
-  gap: 10px; /* Space between buttons */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.save-toggler{
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  right: 7px;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #151A2D;
 }
