@@ -10,8 +10,8 @@
 }
 
 body {
-  background: linear-gradient(#F1FAFF, #CBE4FF);
-  background-attachment: fixed;
+    background: linear-gradient(#F1FAFF, #CBE4FF);
+    background-attachment: fixed;
 }
 
 /* ======= LOG IN STYLES =========== */
@@ -168,15 +168,15 @@ body {
 }
 
 .content-section {
-  position: relative;
-  padding-top: 20px;
-  height: 100vh;
-  left: 250px;
-  width: calc(100% - 250px);
-  background-image: none;
-  background-size: cover;
-  background-position: center;
-  transition: 0.4s ease;
+    position: relative;
+    padding-top: 20px;
+    height: 100vh;
+    left: 250px;
+    width: calc(100% - 250px);
+    background-image: none;
+    background-size: cover;
+    background-position: center;
+    transition: 0.4s ease;
 }
 
 .sidebar-header {

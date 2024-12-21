@@ -28,3 +28,31 @@ export function setupAuthUI() {
       });
     }
 }
+
+export function logout() {
+  // Select the logout button
+const logoutButton = document.querySelector('#logout'); // Adjust selector if necessary
+
+// Add click event listener to the logout button
+logoutButton.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent default link behavior
+  if (confirm('Are you sure you want to logout?')) {
+    fetch('../backend/logout.php', {
+      method: 'POST', // Ensure logout.php handles POST requests
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Successfully logged out!');
+        window.location.href = 'index.html'; // Redirect to the login page
+      } else {
+        alert('Failed to logout: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error during logout:', error);
+      alert('An error occurred while logging out.');
+    });
+  }
+});
+}

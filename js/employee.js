@@ -1,13 +1,3 @@
-function saveCurrentSection() {
-  const activeSection = document.querySelector(".section.active");
-  if (activeSection) {
-    const activeSectionId = activeSection.id;
-    localStorage.setItem("activeSection", activeSectionId);
-  } else {
-    console.warn("No active section found.");
-  }
-}
-
 export function fetch_employee() {
   fetch('../backend/fetch_employees.php')
     .then(response => response.json())

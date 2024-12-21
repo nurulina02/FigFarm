@@ -1,0 +1,5 @@
+{"staff_ID":"S001","status":"inactive"}Array
+(
+    [staff_ID] => S001
+    [status] => inactive
+)

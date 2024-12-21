@@ -39,14 +39,14 @@
           <span class="nav-tooltip">Attendance</span>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-target="work-section">
             <span class="nav-icon material-symbols-rounded">list</span>
             <span class="nav-label">Work Assignment</span>
           </a>
           <span class="nav-tooltip">Work Assignment</span>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-target="sales-section">
             <span class="nav-icon material-symbols-rounded">sell</span>
             <span class="nav-label">Sales</span>
           </a>
@@ -60,14 +60,14 @@
           <span class="nav-tooltip">Employee</span>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-target="reports-section">
             <span class="nav-icon material-symbols-rounded">book</span>
             <span class="nav-label">Reports</span>
           </a>
           <span class="nav-tooltip">Reports</span>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-target="settings-section">
             <span class="nav-icon material-symbols-rounded">settings</span>
             <span class="nav-label">Settings</span>
           </a>
@@ -77,14 +77,14 @@
       <!-- Secondary bottom nav -->
       <ul class="nav-list secondary-nav">
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" data-target="profile-section">
             <span class="nav-icon material-symbols-rounded">account_circle</span>
             <span class="nav-label">Profile</span>
           </a>
           <span class="nav-tooltip">Profile</span>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="#" class="nav-link" id = "logout">
             <span class="nav-icon material-symbols-rounded">logout</span>
             <span class="nav-label">Logout</span>
           </a>
@@ -95,13 +95,39 @@
   </div>
 
 	<div class ="content">
-	<section id="dashboard-section" class="content-section">
+	<section id="dashboard-section" class="content-section" >
 		<h1>Welcome to the Manager's Dashboard</h1>
 		<!-- Dashboard-specific content here -->
 	</section>
 
 	<section id="attendance-section" class="content-section" >
-		<h1>Attendance</h1>
+		<header>
+			<button class="toggler add-toggler">
+				<span class="material-symbols-rounded">add</span>
+			</button>
+			<h1>Attendance</h1>
+		</header>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Attendance</th>
+				</tr>
+			</thead>
+			<tbody id="attendance-list">
+				<!-- Employee data will be dynamically inserted here -->
+			</tbody>
+		</table>
+	</section>
+
+  <section id="work-section" class="content-section" >
+		<h1>Work Assignment</h1>
+		<!-- Attendance-specific content here -->
+	</section>
+
+  <section id="sales-section" class="content-section" >
+		<h1>Sales</h1>
 		<!-- Attendance-specific content here -->
 	</section>
 
@@ -128,6 +154,22 @@
 			</tbody>
 		</table>
 	</section>
+
+  <section id="reports-section" class="content-section" >
+		<h1>Reports</h1>
+		<!-- Attendance-specific content here -->
+	</section>
+
+  <section id="settings-section" class="content-section" >
+		<h1>Setttings</h1>
+		<!-- Attendance-specific content here -->
+	</section>
+
+  <section id="profile-section" class="content-section" >
+		<h1>Profile</h1>
+		<!-- Attendance-specific content here -->
+	</section>
+
 	</div>
 	<!-- Add Employee Modal -->
 <div id="addEmployeeModal" class="modal hidden">
