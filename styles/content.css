@@ -1,0 +1,28 @@
+/* ======= CONTENT SECTION STYLES ========== */
+
+
+.content-section h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.content-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 3px;
+}
+
+.content-section table th,
+.content-section table td {
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.content-section table th {
+  background-color: #151A2D;
+  color: white;
+}
+
+.content-section table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

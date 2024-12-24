@@ -1,0 +1,172 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('sidebar.css');
+@import url('modal.css');
+@import url('content.css');
+@import url('auth.css');
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(#F1FAFF, #CBE4FF);
+    background-attachment: fixed;
+}
+
+/* Close button */
+.close-button {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+
+
+/* ======= TABLE STYLES ========== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+
+
+.add-toggler{
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    right: 7px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #151A2D;
+}
+
+
+/* General styling for action buttons */
+.action-btn {
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px;
+    font-size: 18px;
+    transition: color 0.3s, transform 0.2s;
+
+
+}
+
+.action-btn:hover {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+
+.edit-btn span {
+    color: green;
+}
+
+.edit-btn:hover span {
+    color: #28a745;
+}
+
+.inactivate-btn span {
+    color: red;
+}
+
+.inactivate-btn:hover span {
+    color: #dc3545;
+}
+
+.action-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.action-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggler {
+    position: absolute;
+    height: 35px;
+    width: 70px;
+    right: 7px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #151A2D;
+}
+
+.attendance-dropdown {
+    margin-left: 10px;
+    background: transparent;
+    width: 100%;
+    padding: 4px 20px;
+    color: #0b0217;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+}
+
+.left-section {
+    left: 5px;
+    width : 50%;
+    position: absolute;
+}
+.right-section {
+    right: 5px;
+    width : 50%;
+    position: absolute;
+}
+
+div.product {
+    background-color: #CBE4FF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px #151A2D;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+#add-sale-btn {
+    position: absolute;
+    height: 35px;
+    width: 70px;
+    right: 30px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #151A2D;
+}
+

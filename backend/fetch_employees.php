@@ -20,10 +20,20 @@ if ($conn->connect_error) {
 
 // Fetch employees from the database
 $stmt = $conn->prepare(
-  "SELECT `staff_ID`, `staff_Name`, `email`, `status`, `department` 
-  FROM `staff`
-  WHERE `department` = ?
-  ORDER BY `staff`.`status` ASC, `staff_ID`"
+  "SELECT 
+    staff.staff_ID, 
+    staff.staff_Name, 
+    staff.email,
+    staff.status,
+    staff.department,
+    attendance.attendance_Status
+  FROM staff
+  LEFT JOIN attendance 
+    ON staff.staff_ID = attendance.staff_ID 
+    AND attendance.date = CURDATE() -- Match today's attendance
+  WHERE staff.department = ?
+  ORDER BY staff.staff_ID ASC
+"
 ); // Adjust column names based on your table
 $stmt->bind_param("s", $department);
 $stmt->execute();
