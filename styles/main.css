@@ -128,7 +128,7 @@ table th {
 .attendance-dropdown {
     margin-left: 10px;
     background: transparent;
-    width: 100%;
+    width: 80%;
     padding: 4px 20px;
     color: #0b0217;
     transition: all 0.2s ease;
@@ -148,7 +148,7 @@ table th {
 
 div.product {
     background-color: #CBE4FF;
-    margin-top: 10px;
+    margin-top: 4px;
     margin-bottom: 10px;
     border: 1px #151A2D;
     padding: 20px;
@@ -169,4 +169,12 @@ div.product {
     border-radius: 8px;
     background: #151A2D;
 }
-
+.product p {
+    position: absolute;
+    float: right;
+}
+.product span {
+    text-align: justify;
+    position: relative;
+    margin-left: 250px;
+}

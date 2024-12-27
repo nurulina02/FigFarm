@@ -1,40 +1,6 @@
-export function fetch_products() {
   const productList = document.getElementById("product-list");
+  const transactionHistory = document.getElementById("transaction-history");
 
-  // Fetch products from the backend
-  fetch("../backend/fetch_products.php")
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        const products = data.products;
-        productList.innerHTML = ''; // Clear the list before rendering
-        
-        products.forEach((product) => {
-          // Create a container for each product
-          const productDiv = document.createElement("div");
-          productDiv.classList.add("product");
-
-          // Add product details
-          productDiv.innerHTML = `
-          
-            ${product.id}
-            ${product.name}
-            RM${parseFloat(product.price).toFixed(2)}/${product.unit}
-          
-          `;
-
-          // Append the product container to the list
-          productList.appendChild(productDiv);
-        });
-      } else {
-        productList.innerHTML = "<p>No products found.</p>";
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching products:", error);
-      productList.innerHTML = "<p>Error loading products.</p>";
-    });
-}
 export function add_sales(){
   const addSaleModal = document.getElementById("add-sale-modal");
     const addSaleForm = document.getElementById("add-sale-form");
@@ -71,23 +37,87 @@ export function add_sales(){
     addSaleForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const formData = new FormData(addSaleForm);
+        const jsonData = Object.fromEntries(formData);
+        console.log('JSON Sent:', jsonData);
 
         fetch("../backend/add_sale.php", {
-            method: "POST",
-            body: JSON.stringify(Object.fromEntries(formData)),
-            headers: { "Content-Type": "application/json" },
-        })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    alert("Sale added successfully!");
-                    updateLists();
-                } else {
-                    alert("Error adding sale: " + result.message);
-                }
-                addSaleModal.classList.add("hidden");
-            })
-            .catch(error => console.error("Error adding sale:", error));
+          method: "POST",
+          body: JSON.stringify(Object.fromEntries(formData)),
+          headers: { "Content-Type": "application/json" },
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log('Response from PHP:', result); // Debug the response
+          if (result.success) {
+            addSaleModal.classList.add("hidden");
+              alert("Sale added successfully!");
+               // Close the modal
+              update_list();
+          } else {
+              alert("Error adding sale: " + result.message);
+          }
+      })
+      .catch(error => console.error("Error adding sale:", error));
     });
 }
+export function update_list() {
+  const productList = document.getElementById("product-list");
+  const transactionHistory = document.getElementById("transaction-history");
 
+  function updateLists() {
+      fetch("../backend/fetch_sales_summary.php")
+          .then(response => response.json())
+          .then(data => {
+              console.log("Fetched Data:", data); // Debugging
+              if (data.success) {
+                  productList.innerHTML = generateProductList(data.products);
+                  transactionHistory.innerHTML = generateTransactionHistory(data.transactions);
+              } else {
+                  
+                  productList.innerHTML = "<tr><td>No products found.</td/</tr>";
+                  //transactionHistory.innerHTML = "<tr><td>No transactions found.</td></tr>";
+              }
+          })
+          .catch(error => {
+              console.error("Error fetching sales summary:", error);
+              productList.innerHTML = "<p>Error loading products.</p>";
+              transactionHistory.innerHTML = "<p>Error loading transactions.</p>";
+          });
+  }
+
+  function generateProductList(products) {
+      if (!products || products.length === 0) {
+          return "<p>No products available.</p>";
+      }
+
+      return products.map(product => `
+          <div class="product">
+              <p><strong>${product.name}</strong></p> <span>RM${product.price ? parseFloat(product.price).toFixed(2) : "N/A"}/${product.unit} x ${product.quantity_sold} : RM${product.total_sales ? parseFloat(product.total_sales).toFixed(2) : "0.00"}</span>
+          </div>
+      `).join("");
+  }
+
+  function generateTransactionHistory(transactions) {
+      if (!transactions || transactions.length === 0) {
+        return `
+        <tr>
+        <td colspan="6" style="text-align: center;">No transactions found.</td>
+        </tr>
+        `;
+      }
+
+      return transactions.map(transaction =>
+        `
+        <tr>
+            <td>${transaction.product || "N/A"}</td>
+            <td>${transaction.staff || "N/A"}</td>
+            <td>${transaction.quantity || "N/A"}</td>
+            <td>${transaction.payment_method || "N/A"}</td>
+            <td>${transaction.time || "N/A"}</td>
+        </tr>
+      `).join('');
+  }
+
+  // Call the updateLists function to load data initially
+  updateLists();
+}

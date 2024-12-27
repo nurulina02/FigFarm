@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
     $number = preg_replace('/\D/', '', $lastStaffID); // Extract number
     $nextStaffID = $prefix . '0' . (intval($number) + 1);
   } else {
-    $nextStaffID = "S1"; // Default if no employees exist
+    $nextStaffID = "S001"; // Default if no employees exist
   }
 
   // Send JSON response

@@ -47,7 +47,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link" data-target="sales-section">
-            <span class="nav-icon material-symbols-rounded">sell</span>
+            <span class="nav-icon material-symbols-rounded">payments</span>
             <span class="nav-label">Sales</span>
           </a>
           <span class="nav-tooltip">Sales</span>
@@ -60,18 +60,18 @@
           <span class="nav-tooltip">Employee</span>
         </li>
         <li class="nav-item">
+          <a href="#" class="nav-link" data-target="inventory-section">
+            <span class="nav-icon material-symbols-rounded">stacks</span>
+            <span class="nav-label">Inventory</span>
+          </a>
+          <span class="nav-tooltip">Inventory</span>
+        </li>
+        <li class="nav-item">
           <a href="#" class="nav-link" data-target="reports-section">
             <span class="nav-icon material-symbols-rounded">book</span>
             <span class="nav-label">Reports</span>
           </a>
           <span class="nav-tooltip">Reports</span>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link" data-target="settings-section">
-            <span class="nav-icon material-symbols-rounded">settings</span>
-            <span class="nav-label">Settings</span>
-          </a>
-          <span class="nav-tooltip">Settings</span>
         </li>
       </ul>
       <!-- Secondary bottom nav -->
@@ -97,7 +97,7 @@
 	<div class ="content">
 	<section id="dashboard-section" class="content-section" >
 		<h1>Welcome to the Manager's Dashboard</h1>
-		<!-- Dashboard-specific content here -->
+		
 	</section>
 
 	<section id="attendance-section" class="content-section" >
@@ -114,19 +114,36 @@
 				</tr>
 			</thead>
 			<tbody id="attendance-list">
-				<!-- Employee data will be dynamically inserted here -->
+				
 			</tbody>
 		</table>
 	</section>
 
   <section id="work-section" class="content-section" >
-		<h1>Work Assignment</h1>
-		<!-- Attendance-specific content here -->
+		<header>
+			<button class="toggler add-task-toggler" id="add-task-toggler">Add Task</button>
+			<h1>Work Assignment</h1>
+		</header>
+		<table>
+			<thead>
+				<tr>
+					<th>Task ID</th>
+					<th>Task</th>
+					<th>Staff Name</th>
+          <th>Greenhouse/location</th>
+          <th>Status</th>
+          <th>Description</th>
+				</tr>
+			</thead>
+			<tbody id="task-list">
+				
+			</tbody>
+		</table>
 	</section>
 
   <section id="sales-section" class="content-section" >
     <div class="container">
-      <!-- Left Section: Product Sales List -->
+      
       <div class="left-section">
           <header>
             <button id="add-sale-btn" class="toggler">Add Sale</button>
@@ -134,19 +151,34 @@
               
           </header>
           <div id="product-list">
-              <!-- Product Sales will be dynamically inserted here -->
+              
           </div>
       </div>
 
-      <!-- Right Section: Transaction History -->
-      <div class="right-section">
-          <header>
-              <h2>Transaction History</h2>
-          </header>
-          <div id="transaction-history">
-              <!-- Transaction History will be dynamically inserted here -->
-          </div>
-      </div>
+      
+<div class="right-section">
+  <header>
+      <h2>Transaction History</h2>
+  </header>
+  <div>
+    <table id="transaction-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Staff</th>
+                <th>Quantity</th>
+                <th>Payment Method</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="transaction-history">
+            
+        </tbody>
+    </table>
+</div>
+
+</div>
+
   </div>
     
 	</section>
@@ -170,24 +202,24 @@
 				</tr>
 			</thead>
 			<tbody id="employee-list">
-				<!-- Employee data will be dynamically inserted here -->
+				
 			</tbody>
 		</table>
 	</section>
 
   <section id="reports-section" class="content-section" >
 		<h1>Reports</h1>
-		<!-- Attendance-specific content here -->
+		
 	</section>
 
-  <section id="settings-section" class="content-section" >
-		<h1>Setttings</h1>
-		<!-- Attendance-specific content here -->
+  <section id="inventory-section" class="content-section" >
+		<h1>Inventory</h1>
+		
 	</section>
 
-  <section id="profile-section" class="content-section" >
-		<h1>Profile</h1>
-		<!-- Attendance-specific content here -->
+  <section id="reports-section" class="content-section" >
+		<h1>Report</h1>
+		
 	</section>
 
 	</div>
@@ -221,6 +253,7 @@
   </div>
 </div>
 
+<!-- Edit Employee Modal -->
 <div id="editEmployeeModal" class="modal hidden">
   <div class="modal-content">
     <span class="close-button">&times;</span>
@@ -253,19 +286,19 @@
 <div id="add-sale-modal" class="modal hidden">
   <div class="modal-content">
       <span id="close-modal" class="close-button">&times;</span>
-      <h2>Add Sale</h2>
+      <h2>Add New Sale</h2>
       <form id="add-sale-form">
           <label for="product">Product:</label>
-          <select id="product" name="product" required></select>
+          <select id="product" name="product_ID" required></select>
 
           <label for="staff">Staff:</label>
-          <select id="staff" name="staff" required></select>
+          <select id="staff" name="staff_ID" required></select>
 
           <label for="quantity">Quantity:</label>
           <input type="number" id="quantity" name="quantity" required>
 
           <label for="payment-method">Payment Method:</label>
-          <select id="payment-method" name="payment-method" required>
+          <select id="payment-method" name="payment_method" required>
               <option value="cash">Cash</option>
               <option value="transfer">Transfer</option>
           </select>
@@ -275,6 +308,54 @@
   </div>
 </div>
 	
+
+<!-- Add task Modal -->
+<div id="add-task-modal" class="modal hidden">
+  <div class="modal-content">
+      <span id="close-modal-task" class="close-button">&times;</span>
+      <h2>New Task</h2>
+      <form id="add-task-form">
+          <label for="taskID">Task ID:</label>
+          <input type="text" id="taskID" name="taskID" readonly/>
+
+          <label for="task_date">Date:</label>
+          <input type="date" id="task_date" name="task_date" required />
+
+          <label for="task">Task:</label>
+          <select id="task" name="task" required>
+          <option value="Penyemburan Baja">Penyemburan Baja</option>
+          <option value="Pembersihan Lorong">Pembersihan Lorong</option>
+          <option value="Membuang Tunas Air">Membuang Tunas Air</option>
+          <option value="Membuang Daun Karat">Membuang Daun Karat</option>
+          <option value="Petik Buah Ranum">Petik Buah Ranum</option>
+          <option value="Buang Buah Kecut">Buang Buah Kecut</option>
+          <option value="Tukar Polibag Semaian Kecil">Tukar Polibag Semaian Kecil</option>
+          <option value="Pembersihan Kabinet">Pembersihan Kabinet</option>
+          <option value="Tambah Tanah">Tambah Tanah</option>
+          <option value="Lain-Lain (Description)">Lain-Lain (Descriptioin)</option>
+          </select>
+
+          <label for="task_location">Location:</label>
+          <select id="task_location" name="task_location" required>
+          <option value="Greenhouse A">Greenhouse A</option>
+          <option value="Greenhouse B">Greenhouse B</option>
+          <option value="Outside Greenhouse">Outside Greenhouse</option>
+          </select>
+
+          <label for="staff_task">Assign to:</label>
+          <select id="staff_task" name="staff_Name" required>
+            <option value="staff_task">Select Staff</option>
+          </select>
+
+
+
+          <label for="Description">Description</label>
+          <input id="Description" name="Description" required>
+
+          <button type="submit" class="btn">Submit</button>
+      </form>
+  </div>
+</div>
 <script type="module" src="../js/main.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashed_password = $row['password'];
     $position = $row['position'];
     $department = $row['department'];
+    session_start();
     $_SESSION['username'] = $username;
     $_SESSION['department'] = $department;
 
