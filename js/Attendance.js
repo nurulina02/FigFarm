@@ -43,13 +43,7 @@ export function save_attendance() {
 
   const saveButton = document.querySelector('.save-toggler');
 
-  if (!saveButton) {
-    console.error('Save button not found.');
-    return;
-  }
-
   saveButton.addEventListener('click', () => {
-    console.log('Save button clicked.');
     const dropdowns = document.querySelectorAll('.attendance-dropdown');
     const attendanceData = [];
 

@@ -100,9 +100,17 @@ export function fetch_task() {
 
                   const locationCell = document.createElement("td");
                   locationCell.textContent = task.task_location;
-
+                                    
                   const statusCell = document.createElement("td");
-                  statusCell.textContent = task.status;
+                  statusCell.innerHTML = `
+                  <select class = "status-dropdown" id= "status-dropdown" data-task-id="${task.task_id}">
+                    <option value="pending" id="pending">Pending</option>
+                    <option value="in progress id="in-progress">In progress</option>
+                    <option value="completed" id="completed">Completed</option>
+                  </select>
+                  `;
+                  const dropdown = statusCell.querySelector('.status-dropdown');
+                  dropdown.value = task.status || 'pending';
 
                   const descriptionCell = document.createElement("td");
                   descriptionCell.textContent = task.description;
@@ -121,6 +129,7 @@ export function fetch_task() {
                     taskIDInput.value = data.next_task_ID;
                   }
               });
+              update_task(data);
           } else {
               // Display a message if no tasks are found
               const row = document.createElement("tr");
@@ -130,6 +139,9 @@ export function fetch_task() {
               noDataCell.style.textAlign = "center";
               row.appendChild(noDataCell);
               taskList.appendChild(row);
+              if (taskIDInput) {
+                taskIDInput.value = data.next_task_ID;
+              }
           }
       })
       .catch((error) => {
@@ -137,3 +149,47 @@ export function fetch_task() {
       });
 }
 
+export function update_task(tasks) {
+  console.log("Tasks received for update:", tasks)
+  const updateButton = document.querySelector('.save-task-toggler');
+
+  updateButton.addEventListener('click', () => {
+    console.log('Update pressed');
+    const dropdowns = document.querySelectorAll('.status-dropdown');
+    const statusData = [];
+
+    dropdowns.forEach((dropdown) => {
+      const taskId = dropdown.dataset.taskId;
+      const selectedStatus = dropdown.value;
+      if (taskId && selectedStatus) {
+        statusData.push({
+          task_id: taskId,
+          status: selectedStatus,
+          date: new Date().toISOString().split("T")[0],
+        });
+      }
+    });
+
+    // Send updated data to backend
+    fetch('../backend/update_task.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status: statusData }),
+    })
+      .then((response) => {
+        console.log('Backend response status:', response.status);
+        return response.json();
+      })
+      .then((result) => {
+        console.log('Backend result:', result);
+        if (result.success) {
+          alert('Status updated successfully!');
+        } else {
+          alert('Error updating status: ' + result.message);
+        }
+      })
+      .catch((error) => console.error('Error sending data to backend:', error));
+  });
+}

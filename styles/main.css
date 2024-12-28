@@ -111,10 +111,10 @@ table th {
 }
 
 .toggler {
-    position: absolute;
+    float: right;
     height: 35px;
     width: 70px;
-    right: 7px;
+    margin-right: 7px;
     border: none;
     color: #fff;
     display: flex;
@@ -123,6 +123,7 @@ table th {
     cursor: pointer;
     border-radius: 8px;
     background: #151A2D;
+    font-size: small;
 }
 
 .attendance-dropdown {
@@ -137,12 +138,12 @@ table th {
 
 .left-section {
     left: 5px;
-    width : 50%;
+    width : 45%;
     position: absolute;
 }
 .right-section {
     right: 5px;
-    width : 50%;
+    width : 55%;
     position: absolute;
 }
 
@@ -176,5 +177,30 @@ div.product {
 .product span {
     text-align: justify;
     position: relative;
-    margin-left: 250px;
+    margin-left: 230px;
+}
+
+.status-dropdown {
+    width: 100%;
+    padding: 4px 20px;
+    color: #0b0217;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: all 0.2s ease;
+}
+
+/* Different styles based on value */
+.status-dropdown.pending {
+    background-color: #721c24;
+    color: #721c24;
+}
+
+.status-dropdown.in-progress {
+    background-color: #856404;
+    color: #856404;
+}
+
+.status-dropdown.completed {
+    background-color: #155724;
+    color: #155724;
 }

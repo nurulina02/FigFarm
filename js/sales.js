@@ -6,30 +6,69 @@ export function add_sales(){
     const addSaleForm = document.getElementById("add-sale-form");
     const addSaleBtn = document.getElementById("add-sale-btn");
     const closeModal = document.getElementById("close-modal");
+
     addSaleBtn.addEventListener("click", () => {
-      addSaleModal.classList.remove("hidden")
-      fetch("../backend/fetch_products.php")
-        .then(response => response.json())
-        .then(data => populateDropdown("product", data.products))
-        .catch(error => console.error("Error fetching products:", error));
-
-    fetch("../backend/fetch_employees.php")
-        .then(response => response.json())
-        .then(data => populateDropdown("staff", data.employees))
-        .catch(error => console.error("Error fetching employees:", error));
-
-    // Populate dropdown with data
-    function populateDropdown(id, items) {
-        const dropdown = document.getElementById(id);
-        items.forEach(item => {
+        addSaleModal.classList.remove("hidden");
+    
+        // Fetch and populate product dropdown
+        fetch("../backend/fetch_products.php")
+            .then(response => response.json())
+            .then(data => populateProductDropdown("product", data.products))
+            .catch(error => console.error("Error fetching products:", error));
+    
+        // Fetch and populate staff dropdown
+        fetch("../backend/fetch_employees.php")
+            .then(response => response.json())
+            .then(data => populateStaffDropdown("staff", data.employees))
+            .catch(error => console.error("Error fetching employees:", error));
+    });
+    
+    // Function to populate the product dropdown
+    function populateProductDropdown(productDropdownId, products) {
+        const productDropdown = document.getElementById(productDropdownId);
+        const priceInput = document.getElementById("price-input"); // Ensure this matches your input element's ID
+    
+        // Clear existing options
+        productDropdown.innerHTML = "<option value=''>Please Select Product</option>";
+    
+        // Populate dropdown
+        products.forEach(product => {
             const option = document.createElement("option");
-            option.value = item.id || item.staff_ID;
-            option.textContent = item.name || item.staff_Name;
-            dropdown.appendChild(option);
+            option.value = product.id;
+            option.textContent = product.name;
+            option.dataset.price = product.price || ""; // Store the price as a data attribute
+            option.dataset.unit = product.unit || "";
+            productDropdown.appendChild(option);
+        });
+    
+        // Update price when a product is selected
+        productDropdown.addEventListener("change", () => {
+            const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+            const selectedPrice = selectedOption.dataset.price || ""; // Retrieve the price from the selected option
+            priceInput.value = selectedPrice ? `RM ${selectedPrice} / ${selectedOption.dataset.unit}` : ""; // Update the price input
         });
     }
     
-    });
+    // Function to populate the staff dropdown
+    function populateStaffDropdown(staffDropdownId, employees) {
+        const staffDropdown = document.getElementById(staffDropdownId);
+    
+        // Clear existing options
+        staffDropdown.innerHTML = "<option value=''>Please Select Staff</option>";
+    
+        // Populate dropdown
+        employees.forEach(employee => {
+            const option = document.createElement("option");
+            option.value = employee.staff_ID;
+            option.textContent = employee.staff_Name;
+            staffDropdown.appendChild(option);
+        });
+    
+    
+    
+    
+    
+    };
     closeModal.addEventListener("click", () => addSaleModal.classList.add("hidden"));
   
     
@@ -113,7 +152,7 @@ export function update_list() {
             <td>${transaction.staff || "N/A"}</td>
             <td>${transaction.quantity || "N/A"}</td>
             <td>${transaction.payment_method || "N/A"}</td>
-            <td>${transaction.time || "N/A"}</td>
+            <td>${new Date(transaction.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) || "N/A"}</td>
         </tr>
       `).join('');
   }

@@ -5,7 +5,7 @@ import { add_employee, edit_employee, fetch_employee } from "./employee.js";
 import { add_sales, update_list } from "./sales.js";
 import { section } from "./section.js";
 import { sidebar } from "./sidebar.js";
-import { add_task, fetch_task } from "./task.js";
+import { add_task, fetch_task, update_task } from "./task.js";
 
 
 save_attendance();
@@ -21,6 +21,7 @@ update_list();
 add_sales();
 add_task();
 fetch_task();
+update_task();
 document.addEventListener("DOMContentLoaded", () => {
   
 
